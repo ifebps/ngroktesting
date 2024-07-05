@@ -14,18 +14,15 @@ jobs:
     steps:
       - name: Download Ngrok.
         run: |
-          Invoke-WebRequest https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-windows-amd64.zip -OutFile ngrok.zip
+          Invoke-WebRequest https://bin.equinox.io/c/bNyj1mQVY4c/ngrok-v3-stable-windows-amd64.zip -OutFile ngrok.zip
           Invoke-WebRequest https://raw.githubusercontent.com/ifebps/ngrokauth/master/start.bat -OutFile start.bat
           Invoke-WebRequest https://raw.githubusercontent.com/ifebps/ngrokauth/master/loop.bat -OutFile loop.bat
       - name: Extract Ngrok File.
         run: Expand-Archive ngrok.zip
       - name: Connect Ngrok.
         run: |
-          .\ngrok\ngrok.exe authtoken $Env:NGROK_AUTH
-          echo ${{ github.event.inputs.increment }}
-        env:
-          NGROK_AUTH: ${{ github.event.inputs.increment }}
-      - name: Windows10 RDP.
+          .\ngrok\ngrok.exe authtoken 2ipj0VaR08sgNR2o171sKVu49gV_FgMwLh5RhzH1nA956m3P
+      - name: Windows.
         run: |
           Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server' -name "fDenyTSConnections" -Value 0
           Enable-NetFirewallRule -DisplayGroup "Remote Desktop"
